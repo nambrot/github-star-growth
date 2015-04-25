@@ -46,6 +46,7 @@ end
 gem 'httparty'
 gem 'pry-debugger'
 gem 'foundation-rails'
+gem 'dalli'
 source 'https://rails-assets.org' do
   gem 'rails-assets-c3'
   gem 'rails-assets-d3'

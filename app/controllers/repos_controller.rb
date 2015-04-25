@@ -1,10 +1,13 @@
 class ReposController < ApplicationController
 
   def show
-    object = GithubStarGazerService.new(params[:owner], params[:repo_name])
-    object.get_data
+    data = Rails.cache.fetch "v1-#{params[:owner]}-#{params[:repo_name]}" do
+      object = GithubStarGazerService.new(params[:owner], params[:repo_name])
+      object.get_data
+      object.stars_by_date
+    end
 
-    render json: object.stars_by_date
+    render json: data
   end
 
 end
