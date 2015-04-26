@@ -90,7 +90,7 @@ $(function(){
   }
 
   var addRepoFromRepoList = function(evt){
-    repoName = evt.target.href.match(/github.com\/([\w\.\/]+)/)[1]
+    repoName = evt.target.href.match(/github.com\/([\w\.\/-]+)/)[1]
     addRepo(repoName)
     return false
   }
