@@ -50,3 +50,4 @@ gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'puma'
 gem 'foreman'
+gem 'rails_12factor'
