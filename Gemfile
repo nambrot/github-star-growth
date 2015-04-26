@@ -50,8 +50,3 @@ gem 'dalli'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'puma'
-source 'https://rails-assets.org' do
-  gem 'rails-assets-c3'
-  gem 'rails-assets-d3'
-  gem 'rails-assets-lodash'
-end
