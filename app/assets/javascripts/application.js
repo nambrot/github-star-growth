@@ -65,6 +65,9 @@ $(function(){
           [repoName].concat(_.values(calculateCumulativeCounts(resp)))
         ]
       })
+    }).fail(function(resp){
+      if(resp.responseJSON.error)
+        alert(resp.responseJSON.error)
     })
 
     return false;
