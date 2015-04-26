@@ -194,6 +194,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (>= 1.8.4)
   byebug
   coffee-rails (~> 4.1.0)
   dalli
