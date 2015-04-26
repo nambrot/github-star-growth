@@ -61,14 +61,7 @@ $(function(){
     }
   });
 
-  var addRepo = function(){
-    var repoName = $('#repo-input').val()
-
-    if(repoName.search(/[\w\.]+\/[\w\.]+/) == -1){
-      alert("Please specify correct repo name format")
-      return false;
-    }
-
+  var addRepo = function(repoName) {
     $.getJSON("/" + repoName.replace(".", "=="), function(resp){
       counts = calculateCumulativeCounts(resp)
       chart.load({
@@ -81,12 +74,29 @@ $(function(){
       if(resp.responseJSON.error)
         alert(resp.responseJSON.error)
     })
+  }
+
+  var addRepoFromInput = function(){
+    var repoName = $('#repo-input').val()
+
+    if(repoName.search(/[\w\.]+\/[\w\.]+/) == -1){
+      alert("Please specify correct repo name format")
+      return false;
+    }
+
+    addRepo(repoName)
 
     return false;
   }
 
-  $(document).on('click', '.add-repo', addRepo);
-  $("#add-repo-form").submit(addRepo);
+  var addRepoFromRepoList = function(evt){
+    repoName = evt.target.href.match(/github.com\/([\w\.\/]+)/)[1]
+    addRepo(repoName)
+    return false
+  }
 
+  $(document).on('click', '.add-repo', addRepoFromInput);
+  $("#add-repo-form").submit(addRepoFromInput);
+  $(document).on('click', '.repo-list a', addRepoFromRepoList)
 });
 
