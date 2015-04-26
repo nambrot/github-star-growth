@@ -64,12 +64,12 @@ $(function(){
   var addRepo = function(){
     var repoName = $('#repo-input').val()
 
-    if(repoName.search(/[A-z]+\/[A-z]+/) == -1){
+    if(repoName.search(/[\w\.]+\/[\w\.]+/) == -1){
       alert("Please specify correct repo name format")
       return false;
     }
 
-    $.getJSON("/" + repoName, function(resp){
+    $.getJSON("/" + repoName.replace(".", "=="), function(resp){
       counts = calculateCumulativeCounts(resp)
       chart.load({
         columns: [
