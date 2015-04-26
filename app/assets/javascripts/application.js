@@ -23,11 +23,23 @@
 $(function(){
   $(document).foundation();
 
-  window.repos = {}
-
   var calculateCumulativeCounts = function(data) {
     var i = 0;
-    return _.object(_.map(data, function(a, b){ i += a; return [b, i];}))
+    var count = _.keys(data).length
+
+    var cumulativeTotals = _(data)
+      .map(function(a, b){
+        i += a
+        return [b, i];
+      })
+      .groupBy(function(value, index){
+        return Math.floor(index / (count / 100))
+      })
+      .map(function(a, b){
+        return _.last(a)
+      })
+
+    return _.object(cumulativeTotals.value())
   }
 
   var chart = c3.generate({
@@ -58,11 +70,11 @@ $(function(){
     }
 
     $.getJSON("/" + repoName, function(resp){
-      repos[repoName] = resp
+      counts = calculateCumulativeCounts(resp)
       chart.load({
         columns: [
-          ['x'].concat(_.keys(resp)),
-          [repoName].concat(_.values(calculateCumulativeCounts(resp)))
+          ['x'].concat(_.keys(counts)),
+          [repoName].concat(_.values(counts))
         ]
       })
     }).fail(function(resp){
