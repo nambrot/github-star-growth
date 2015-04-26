@@ -49,3 +49,4 @@ gem 'dalli'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'puma'
+gem 'foreman'
