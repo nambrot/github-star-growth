@@ -20,7 +20,7 @@
 //= require alerts
 //= require_tree .
 
-
+humane.timeout = 1400
 $(function(){
   $(document).foundation();
 
@@ -77,7 +77,7 @@ $(function(){
       })
     }).fail(function(resp){
       if(resp.responseJSON.error)
-        alertify.alert(resp.responseJSON.error)
+        humane.log(resp.responseJSON.error)
     })
   }
 
@@ -85,7 +85,7 @@ $(function(){
     var repoName = $('#repo-input').val()
 
     if(repoName.search(/[\w\.]+\/[\w\.]+/) == -1){
-      alertify.alert("Please specify correct repo name format 'user_name/repo_name' ")
+      humane.log("Please specify correct repo name format 'user_name/repo_name' ")
       return false;
     }
 
