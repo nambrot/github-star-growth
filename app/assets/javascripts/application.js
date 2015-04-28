@@ -52,11 +52,15 @@ $(function(){
       x: {
         type: 'timeseries',
         tick: {
+          fit: false,
           format: '%Y-%m-%d'
         }
       }
     },
     point: {
+      show: false
+    },
+    tooltip: {
       show: false
     }
   });
@@ -80,7 +84,7 @@ $(function(){
     var repoName = $('#repo-input').val()
 
     if(repoName.search(/[\w\.]+\/[\w\.]+/) == -1){
-      alert("Please specify correct repo name format")
+      alert("Please specify correct repo name format 'user_name/repo_name' ")
       return false;
     }
 
