@@ -17,6 +17,7 @@
 //= require lodash
 //= require d3
 //= require c3
+//= require alerts
 //= require_tree .
 
 
@@ -76,7 +77,7 @@ $(function(){
       })
     }).fail(function(resp){
       if(resp.responseJSON.error)
-        alert(resp.responseJSON.error)
+        alertify.alert(resp.responseJSON.error)
     })
   }
 
@@ -84,7 +85,7 @@ $(function(){
     var repoName = $('#repo-input').val()
 
     if(repoName.search(/[\w\.]+\/[\w\.]+/) == -1){
-      alert("Please specify correct repo name format 'user_name/repo_name' ")
+      alertify.alert("Please specify correct repo name format 'user_name/repo_name' ")
       return false;
     }
 
