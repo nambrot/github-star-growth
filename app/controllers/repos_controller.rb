@@ -1,6 +1,11 @@
 class ReposController < ApplicationController
 
   def show
+    if params[:owner] == "twbs" and params[:repo_name] == "bootstrap"
+      render json: { error: "Github's API does not let me fetch the whole history of Twitter Boostrap"}, status: 404
+      return
+    end
+
     params[:owner].gsub! "==", "."
     params[:repo_name].gsub! "==", "."
 

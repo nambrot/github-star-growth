@@ -13,6 +13,7 @@ class GithubStarGazerService
     page = 1
 
     while new_data = get_page(page) and new_data.length > 0 do
+      break if new_data.class == Hash and new_data["documentation_url"] == "https://developer.github.com/v3/#pagination"
       new_data.each {|obj| stars_by_date[Date.parse(obj["starred_at"]).to_s] += 1}
       page += 1
     end
